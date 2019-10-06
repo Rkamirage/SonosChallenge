@@ -20,6 +20,5 @@ def search_track(track):
 	results = sp.search(q='track:'+track, type='track')
 
 	return(results['tracks']['items'][0]['uri'])
-	# return results['artists']['items'][0]['uri']
 
 search_track('south of the boarder')
