@@ -1,8 +1,7 @@
-from soco import *
+import soco
 import spotipy
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
 
+import getpass
 from sender import Sender
 from find_song_url import SearchEngine
 
