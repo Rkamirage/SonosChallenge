@@ -1,10 +1,9 @@
-from soco import *
+import soco
 import easygui as g
 import spotipy
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
 import easygui as g
 
+import getpass
 import time
 from receiver import Receiver
 
@@ -26,7 +25,7 @@ client = Receiver(user, password)
 # search for email
 song_from_friends = False
 while not song_from_friends:
-    song_from_friends = client.check_mailbox("Sonos sends you")
+    song_from_friends = client.check_mailbox("Sonos sends")
     time.sleep(10)  # sleep for a while
 
 # init soco device
@@ -34,7 +33,7 @@ device = soco.discovery.any_soco()
 service = MusicService("Spotify")
 add_from_service(song_from_friends, sservice, device)
 
-answer = g.buttonbox(msg = "Do you want to play the song?", title="Sonos instant play",
+answer = g.buttonbox(msg = "Do you want to play %s?"%song_from_friends, title="Sonos instant play",
                      choices=['yes', 'no'])
 if answer == 'yes':
     print("Enjoy")

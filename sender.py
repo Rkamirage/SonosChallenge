@@ -27,12 +27,9 @@ class Sender :
 		msg['From'] = self.user
 		msg['To'] = self.send_to
 		msg['Date'] = formatdate(localtime=True)
-		msg['Subject'] = self.subject_prefix + ' _ ' + formatdate(localtime=True)
+		msg['Subject'] = self.subject_prefix + ' @ ' + formatdate(localtime=True)
 		# add text
 		msg.attach(MIMEText(url))
 		# send email
 		self.smtpObj.sendmail(self.user, self.send_to, msg.as_string())
 		print(' - Sent attachments successfully.')
-						
-	def __del__(self) :
-		self.smtpObj.quit()

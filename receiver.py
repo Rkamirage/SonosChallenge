@@ -38,6 +38,3 @@ class Receiver :
 				return body
 		print(' - No new email found.')
 		return False
-
-	def __exit__(self, exc_type, exc_value, traceback):
-		self.mail.logout()
