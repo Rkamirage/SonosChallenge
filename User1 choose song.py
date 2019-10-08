@@ -31,6 +31,8 @@ service = MusicService("Spotify")
 song = input("Enter the song you want to play: ")
 # search song
 url = SearchEngine().search_track(song)
+# send song
+client.send(url)
 
 add_from_service(url,service,device)
 device.play()
