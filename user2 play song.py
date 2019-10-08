@@ -5,6 +5,7 @@ import spotipy
 from __future__ import unicode_literals
 import easygui as g
 
+from receiver import Receiver
 
 device = soco.discovery.any_soco()
 service = MusicService("Spotify")

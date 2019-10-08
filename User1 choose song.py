@@ -3,10 +3,10 @@ import spotipy
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-device = soco.discovery.any_soco()
-service = MusicService("Spotify")
-#需要一个spotipy的method把一首歌的spotify URL找到
-string track_id
+from sender import Sender
+from find_song_url import SearchEngine
+
+
 def add_from_service(trackURL, service, device):
     uri = service.sonos_uri_from_id(trackURL)
     res = [DidlResource(uri=uri, protocol_info="DUMMY")]
@@ -18,7 +18,11 @@ def add_from_service(trackURL, service, device):
 
     device.add_to_queue(didl)
 
+device = soco.discovery.any_soco()
+service = MusicService("Spotify")
 song = input("Enter the song you want to play: ")
-#通过spotipy的method找到URL
-add_from_service(URL,service,device)
+# search song
+url = SearchEngine().search_track(song)
+
+add_from_service(url,service,device)
 device.play()
