@@ -5,17 +5,16 @@ import email
 
 # For receiving email
 class Receiver :
-	def __init__(self, email_user, email_pass, subject_key_word) :
+	def __init__(self, email_user, email_pass, ) :
 		self.email_user = email_user
 		self.email_pass = email_pass
-		self.subject_key_word = subject_key_word
 
 		self.mail = imaplib.IMAP4_SSL('imap.gmail.com', 993)
 		self.mail.login(self.email_user, self.email_pass)
 		print('Receiver connected.')
 		self.replied_emails = []
 
-	def check_mailbox(self) :
+	def check_mailbox(self, subject_key_word) :
 		def extract_body(latest_email):
 			typ, data = self.mail.fetch(latest_email,'(RFC822)')
 			msg = email.message_from_bytes(data[0][1])
@@ -29,7 +28,7 @@ class Receiver :
 
 		print('Checking mailbox.')
 		self.mail.select('Inbox')
-		typ, data = self.mail.search(None, '(SUBJECT "%s")'%self.subject_key_word)
+		typ, data = self.mail.search(None, '(SUBJECT "%s")'%subject_key_word)
 		# check search results
 		if data[0].split() :
 			latest_email = data[0].split()[-1]

@@ -18,6 +18,14 @@ def add_from_service(trackURL, service, device):
 
     device.add_to_queue(didl)
 
+
+# init receiver
+user = input(' - Please enter your gmail account: ')
+password = getpass.getpass(' - Please enter your password: ')
+friend_email = input(' - Please enter your friends gmail account: ')
+client = Sender(user=user, password=password, send_to=friend_email, subject_prefix='Sonos sends you')
+
+
 device = soco.discovery.any_soco()
 service = MusicService("Spotify")
 song = input("Enter the song you want to play: ")
